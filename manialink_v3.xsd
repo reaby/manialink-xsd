@@ -2,7 +2,7 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:simpleType name="type_cmlentry_value">
         <xs:annotation>
-            <xs:documentation>Valuetype used with CMlEntry.</xs:documentation>
+            <xs:documentation>Value type used with CMlEntry.</xs:documentation>          
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="Ml_Unknown" />
@@ -40,6 +40,15 @@
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:pattern value="([0-9]+([.][0-9]*)?|[.][0-9]+)"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="type_real">
+        <xs:annotation>
+            <xs:documentation>Real number, integer or float</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"></xs:pattern>
         </xs:restriction>
     </xs:simpleType>
 
@@ -138,7 +147,7 @@
         <xs:attribute name="pos" type="type_float2" />
         <xs:attribute name="z-index" type="type_floatPositive" use="optional" />
         <xs:attribute name="class" type="xs:string" use="optional" />
-        <xs:attribute name="rot" type="xs:float" use="optional" />
+        <xs:attribute name="rot" type="type_real" use="optional" />
         <xs:attribute name="hidden" type="type_bool" use="optional" />
         <xs:attribute name="scale" type="type_floatPositive" use="optional" />
     </xs:attributeGroup>
@@ -199,8 +208,8 @@
             <xs:choice minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="curve" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="id" type="xs:string" use="optional" />
-            <xs:attribute name="size" type="type_float2positive" />
+            <xs:attributeGroup ref="basicAttrib" />
+            <xs:attributeGroup ref="sizeAttrib" />            
             <xs:attribute name="min" type="type_float2positive" />
             <xs:attribute name="max" type="type_float2positive" />
         </xs:complexType>
@@ -354,6 +363,7 @@
             <xs:attribute name="selecttext" type="type_bool" use="optional" />
             <xs:attribute name="default" type="xs:string" use="optional" />
             <xs:attribute name="valuetype" type="type_cmlentry_value" use="optional" />
+            <xs:attribute name="textemboss" type="type_bool" use="optional" />
         </xs:complexType>
     </xs:element>
     <xs:element name="textedit" nillable="true">
@@ -370,6 +380,8 @@
                     <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
                     <xs:attribute name="textformat" type="textedit_format" use="optional" />
                     <xs:attribute name="linespacing" type="type_floatPositive" use="optional" />
+                    <xs:attribute name="textemboss" type="type_bool" use="optional" />
+                    <xs:attribute name="selecttext" type="type_bool" use="optional" />
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -392,7 +404,7 @@
                 <xs:element ref="timeline" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="slider" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attributeGroup ref="basicAttrib"></xs:attributeGroup>
+            <xs:attributeGroup ref="basicAttrib" />
             <xs:attribute name="clip" type="type_float2positive" use="optional" />
             <xs:attribute name="size" type="type_float2positive" use="optional" />
             <xs:attribute name="scroll" type="type_bool" use="optional" />
@@ -471,8 +483,8 @@
                 <xs:element name="script" minOccurs="0" maxOccurs="unbounded"></xs:element>
             </xs:choice>
             <xs:attribute name="version" type="xs:int" default="3" />
-            <xs:attribute name="id" type="xs:NCName" use="optional" />
-            <xs:attribute name="name" type="xs:QName" use="optional" />
+            <xs:attribute name="id" type="xs:string" use="optional" />
+            <xs:attribute name="name" type="xs:string" use="optional" />
             <xs:attribute name="background" type="xs:string" use="optional" />
         </xs:complexType>
     </xs:element>
