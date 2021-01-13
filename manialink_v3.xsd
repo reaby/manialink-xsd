@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
     <xs:simpleType name="type_cmlentry_value">
         <xs:annotation>
-            <xs:documentation>Value type used with CMlEntry.</xs:documentation>          
+            <xs:documentation>Value type used with CMlEntry.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="Ml_Unknown" />
@@ -42,7 +43,7 @@
             <xs:pattern value="([0-9]+([.][0-9]*)?|[.][0-9]+)"></xs:pattern>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="type_real">
         <xs:annotation>
             <xs:documentation>Real number, integer or float</xs:documentation>
@@ -177,11 +178,13 @@
         <xs:attribute name="focusareacolor1" type="type_color" use="optional" />
         <xs:attribute name="focusareacolor2" type="type_color" use="optional" />
     </xs:attributeGroup>
+
     <!-- elements -->
 
     <xs:element name="frameinstance">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
+
             <xs:attribute name="modelid" type="xs:NCName" />
         </xs:complexType>
     </xs:element>
@@ -209,7 +212,8 @@
                 <xs:element ref="curve" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
             <xs:attributeGroup ref="basicAttrib" />
-            <xs:attributeGroup ref="sizeAttrib" />            
+            <xs:attributeGroup ref="sizeAttrib" />
+
             <xs:attribute name="min" type="type_float2positive" />
             <xs:attribute name="max" type="type_float2positive" />
         </xs:complexType>
@@ -220,14 +224,17 @@
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
+
             <xs:attribute name="color" type="type_color" use="optional" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="timeline">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
+
             <xs:attribute name="defaulttimeshown" type="type_floatPositive" use="optional" />
             <xs:attribute name="trackcount" type="xs:positiveInteger" />
             <xs:attribute name="separatorcolor" type="type_color" use="optional" />
@@ -238,17 +245,20 @@
             <xs:attribute name="bgcolor" type="type_color" use="optional" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="video">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
+
             <xs:attribute name="data" type="xs:anyURI" />
             <xs:attribute name="play" type="type_bool" use="optional" />
             <xs:attribute name="music" type="type_bool" use="optional" />
             <xs:attribute name="volume" type="type_floatPositive" use="optional" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="audio">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
@@ -261,6 +271,7 @@
             <xs:attribute name="music" type="type_bool" use="optional" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="label">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
@@ -276,7 +287,6 @@
             <xs:attribute name="opacity" type="type_floatPositive" use="optional" />
             <xs:attribute name="textemboss" type="type_bool" use="optional" />
             <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
-
             <xs:attribute name="textid" type="xs:string" use="optional" />
             <xs:attribute name="linespacing" type="type_bool" use="optional" />
             <xs:attribute name="translate" type="type_bool" use="optional" />
@@ -284,6 +294,7 @@
             <xs:anyAttribute processContents="lax" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="gauge">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
@@ -292,11 +303,14 @@
             <xs:attribute name="style" type="xs:string" use="optional" />
             <xs:attribute name="clan" type="xs:int" use="optional" />
             <xs:attribute name="centered" type="type_bool" use="optional" />
+            <xs:attribute name="drawbg" type="type_bool" use="optional" />
+            <xs:attribute name="drawblockbg" type="type_bool" use="optional" />
             <xs:attribute name="color" type="type_color" use="optional" />
             <xs:attribute name="ratio" type="type_floatPositive" use="optional" />
             <xs:attribute name="grading" type="type_floatPositive" use="optional" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="fileentry">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
@@ -311,6 +325,7 @@
             <xs:attribute name="type" type="type_fileEntry" use="optional" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="minimap">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
@@ -318,16 +333,26 @@
             <xs:attributeGroup ref="scriptAttrib" />
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="camera">
+        <xs:complexType>
+            <xs:attributeGroup ref="basicAttrib" />
+            <xs:attributeGroup ref="sizeAttrib" />
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="slider">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
+
             <xs:attribute name="value" type="type_floatPositive" use="optional" />
             <xs:attribute name="minrange" type="type_floatPositive" use="optional" />
             <xs:attribute name="maxrange" type="type_floatPositive" use="optional" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="quad">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
@@ -352,12 +377,14 @@
             <xs:anyAttribute processContents="lax" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="entry">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="styleAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
+
             <xs:attribute name="name" type="xs:NCName" use="optional" />
             <xs:attribute name="textformat" type="entry_textformat" use="optional" />
             <xs:attribute name="selecttext" type="type_bool" use="optional" />
@@ -366,6 +393,7 @@
             <xs:attribute name="textemboss" type="type_bool" use="optional" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="textedit" nillable="true">
         <xs:complexType>
             <xs:simpleContent>
@@ -374,6 +402,7 @@
                     <xs:attributeGroup ref="sizeAttrib" />
                     <xs:attributeGroup ref="styleAttrib" />
                     <xs:attributeGroup ref="scriptAttrib" />
+
                     <xs:attribute name="default" type="xs:string" use="optional" />
                     <xs:attribute name="showlinenumbers" type="type_bool" use="optional" />
                     <xs:attribute name="autonewline" type="type_bool" use="optional" />
@@ -386,7 +415,11 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
+
     <xs:element name="frame">
+        <xs:annotation>
+            <xs:documentation>Frame, can hold and reposition any elements</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="frame" minOccurs="0" maxOccurs="unbounded" />
@@ -405,14 +438,21 @@
                 <xs:element ref="slider" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
             <xs:attributeGroup ref="basicAttrib" />
-            <xs:attribute name="clip" type="type_float2positive" use="optional" />
+
             <xs:attribute name="size" type="type_float2positive" use="optional" />
+            <xs:attribute name="clip" type="type_bool" use="optional" />
+            <xs:attribute name="clipposn" type="type_float2positive" use="optional" />
+            <xs:attribute name="clipsizen" type="type_float2positive" use="optional" />
             <xs:attribute name="scroll" type="type_bool" use="optional" />
             <xs:attribute name="scrollmax" type="type_float2positive" use="optional" />
             <xs:anyAttribute processContents="lax" />
         </xs:complexType>
     </xs:element>
+
     <xs:element name="manialink">
+        <xs:annotation>
+            <xs:documentation>Manialink.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
                 <xs:element name="stylesheet" minOccurs="0" maxOccurs="unbounded">
@@ -439,7 +479,7 @@
                                     <xs:choice minOccurs="0" maxOccurs="unbounded">
                                         <xs:any processContents="skip" />
                                     </xs:choice>
-                                    <xs:attribute name="id" type="xs:NCName" />
+                                    <xs:attribute name="id" type="xs:NCName" use="required" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -472,17 +512,22 @@
                 <xs:element ref="audio" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="label" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="gauge" minOccurs="0" maxOccurs="unbounded" />
-                <xs:element ref="fileentry" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="camera" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="quad" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="entry" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="fileentry" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="textedit" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="frame" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="colorpicker" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="timeline" minOccurs="0" maxOccurs="unbounded" />
                 <xs:element ref="slider" minOccurs="0" maxOccurs="unbounded" />
-                <xs:element name="script" minOccurs="0" maxOccurs="unbounded"></xs:element>
+                <xs:element name="script" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="version" type="xs:int" default="3" />
+            <xs:attribute name="version" type="xs:int" default="3">
+                <xs:annotation>
+                    <xs:documentation>Version to use, current one is 3</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
             <xs:attribute name="id" type="xs:string" use="optional" />
             <xs:attribute name="name" type="xs:string" use="optional" />
             <xs:attribute name="background" type="xs:string" use="optional" />
