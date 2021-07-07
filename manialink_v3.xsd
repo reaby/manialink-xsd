@@ -146,7 +146,7 @@
     <xs:attributeGroup name="basicAttrib">
         <xs:attribute name="id" type="xs:NCName" use="optional" />
         <xs:attribute name="pos" type="type_float2" />
-        <xs:attribute name="z-index" type="type_floatPositive" use="optional" />
+        <xs:attribute name="z-index" type="xs:float" use="optional" />
         <xs:attribute name="class" type="xs:string" use="optional" />
         <xs:attribute name="rot" type="type_real" use="optional" />
         <xs:attribute name="hidden" type="type_bool" use="optional" />
@@ -181,10 +181,15 @@
 
     <!-- elements -->
 
+    <xs:element name="timeout">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer" />
+        </xs:simpleType>
+    </xs:element>
+
     <xs:element name="frameinstance">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
-
             <xs:attribute name="modelid" type="xs:NCName" />
         </xs:complexType>
     </xs:element>
@@ -438,7 +443,6 @@
                 <xs:element ref="slider" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
             <xs:attributeGroup ref="basicAttrib" />
-
             <xs:attribute name="size" type="type_float2positive" use="optional" />
             <xs:attribute name="clip" type="type_bool" use="optional" />
             <xs:attribute name="clipposn" type="type_float2positive" use="optional" />
@@ -451,10 +455,11 @@
 
     <xs:element name="manialink">
         <xs:annotation>
-            <xs:documentation>Manialink.</xs:documentation>
+            <xs:documentation>Manialink</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="timeout" minOccurs="0" maxOccurs="1" />
                 <xs:element name="stylesheet" minOccurs="0" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
