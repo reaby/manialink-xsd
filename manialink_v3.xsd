@@ -26,6 +26,27 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="type_dico_languages">
+        <xs:annotation>
+            <xs:documentation>Available language ids (partial for maniaplanet)</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="en" />
+            <xs:enumeration value="fr" />
+            <xs:enumeration value="de" />
+            <xs:enumeration value="ru" />
+            <xs:enumeration value="zh" />
+            <xs:enumeration value="ko" />
+            <xs:enumeration value="it" />
+            <xs:enumeration value="es" />
+            <xs:enumeration value="pl" />
+            <xs:enumeration value="br" />
+            <xs:enumeration value="cz" />
+            <xs:enumeration value="tu" />
+            <xs:enumeration value="nl" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="type_color">
         <xs:annotation>
             <xs:documentation>Color, supports formats: RGB RGBA RRGGBB and RRGGBBAA in hex. An alpha value of 00 is totally transparent; FF is totally opaque.</xs:documentation>
@@ -484,7 +505,7 @@
                                     <xs:choice minOccurs="0" maxOccurs="unbounded">
                                         <xs:any processContents="skip" />
                                     </xs:choice>
-                                    <xs:attribute name="id" type="xs:NCName" use="required" />
+                                    <xs:attribute name="id" type="type_dico_languages" use="required" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
