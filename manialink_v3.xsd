@@ -147,6 +147,13 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="quad_blend">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Default"></xs:enumeration>
+            <xs:enumeration value="Add"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="entry_textformat">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Basic"></xs:enumeration>
@@ -388,7 +395,7 @@
 
             <xs:attribute name="image" type="xs:anyURI" use="optional" />
             <xs:attribute name="imagefocus" type="xs:anyURI" use="optional" />
-            <xs:attribute name="alphamaskurl" type="xs:anyURI" use="optional" />
+            <xs:attribute name="alphamask" type="xs:anyURI" use="optional" />
             <xs:attribute name="bgcolor" type="type_color" use="optional" />
             <xs:attribute name="bgcolorfocus" type="type_color" use="optional" />
             <xs:attribute name="keepratio" type="type_keepRatio" use="optional" />
@@ -400,6 +407,7 @@
             <xs:attribute name="autoscalefixedwidth" type="type_bool" use="optional" />
             <xs:attribute name="opacity" type="type_floatPositive" use="optional" />
             <xs:attribute name="bluramount" type="type_floatPositive" use="optional" />
+            <xs:attribute name="blend" type="quad_blend" use="optional" />
             <xs:anyAttribute processContents="lax" />
         </xs:complexType>
     </xs:element>
