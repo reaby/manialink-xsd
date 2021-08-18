@@ -149,8 +149,8 @@
 
     <xs:simpleType name="quad_blend">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="Default"></xs:enumeration>
-            <xs:enumeration value="Add"></xs:enumeration>
+            <xs:enumeration value="default"></xs:enumeration>
+            <xs:enumeration value="add"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
