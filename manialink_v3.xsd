@@ -314,13 +314,18 @@
             <xs:attributeGroup ref="actionAttrib" />
 
             <xs:attribute name="text" type="xs:string" />
+            <xs:attribute name="textid" type="xs:string" use="optional" />
             <xs:attribute name="textprefix" type="xs:string" use="optional" />
             <xs:attribute name="autonewline" type="type_bool" use="optional" />
             <xs:attribute name="appendellipsis" type="type_bool" use="optional" />
             <xs:attribute name="opacity" type="type_floatPositive" use="optional" />
             <xs:attribute name="textemboss" type="type_bool" use="optional" />
+            <xs:attribute name="italicslope" type="type_floatPositive" use="optional" >
+                <xs:annotation>
+                    <xs:documentation>Text must be italic for this to work, accepts values between 0. and 1.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
             <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
-            <xs:attribute name="textid" type="xs:string" use="optional" />
             <xs:attribute name="linespacing" type="type_bool" use="optional" />
             <xs:attribute name="translate" type="type_bool" use="optional" />
 
