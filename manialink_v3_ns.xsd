@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="manialink" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:manialink="manialink">
+
+    <xs:simpleType name="type_cmlentry_value">
+        <xs:annotation>
+            <xs:documentation>Value type used with CMlEntry.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Ml_Unknown" />
+            <xs:enumeration value="Ml_Natural" />
+            <xs:enumeration value="Ml_Integer" />
+            <xs:enumeration value="Ml_Real" />
+            <xs:enumeration value="Ml_String" />
+            <xs:enumeration value="Ml_TimeMmSsCc" />
+            <xs:enumeration value="Ml_TimeHhMmSs" />
+            <xs:enumeration value="Ml_RealFormated" />
+            <xs:enumeration value="Ml_TimeMmSs" />
+            <xs:enumeration value="Ml_Ascii7bit" />
+            <xs:enumeration value="Ml_Real3Decimals" />
+            <xs:enumeration value="Ml_TimeHhMmSs_24" />
+            <xs:enumeration value="Ml_TimeHhMm" />
+            <xs:enumeration value="Ml_Percent" />
+            <xs:enumeration value="Ml_Hexa" />
+            <xs:enumeration value="Ml_TimeHhMmSsOrMmSs" />
+            <xs:enumeration value="Ml_TimeHhMmFromSeconds" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_dico_languages">
+        <xs:annotation>
+            <xs:documentation>Available language ids (partial for maniaplanet)</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="en" />
+            <xs:enumeration value="fr" />
+            <xs:enumeration value="de" />
+            <xs:enumeration value="ru" />
+            <xs:enumeration value="zh" />
+            <xs:enumeration value="ko" />
+            <xs:enumeration value="it" />
+            <xs:enumeration value="es" />
+            <xs:enumeration value="pl" />
+            <xs:enumeration value="br" />
+            <xs:enumeration value="cz" />
+            <xs:enumeration value="tu" />
+            <xs:enumeration value="nl" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_color">
+        <xs:annotation>
+            <xs:documentation>Color, supports formats: RGB RGBA RRGGBB and RRGGBBAA in hex. An alpha value of 00 is totally transparent; FF is totally opaque.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:pattern value="[\dA-Fa-f]{6}([\dA-Fa-f][\dA-Fa-f])?|[\dA-Fa-f]{3}([\dA-Fa-f])?" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_floatPositive">
+        <xs:annotation>
+            <xs:documentation>positive number</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9]+([.][0-9]*)?|[.][0-9]+)" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_real">
+        <xs:annotation>
+            <xs:documentation>Real number, integer or float</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[-]?([0-9]+([.][0-9]*)?|[.][0-9]+)" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_float2">
+        <xs:annotation>
+            <xs:documentation>ingame value of Vec2, 2 numbers separated with space "32.0 -18.0"</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[-]?([0-9]+([.][0-9]*)?|[.][0-9]+) [-]?([0-9]+([.][0-9]*)?|[.][0-9]+)" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_float2positive">
+        <xs:annotation>
+            <xs:documentation>ingame value of Vec2, 2 positive numbers separated with space "32. 18."</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9]+([.][0-9]*)?|[.][0-9]+) ([0-9]+([.][0-9]*)?|[.][0-9]+)" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_bool">
+        <xs:annotation>
+            <xs:documentation>Boolean value, can be 0 or 1</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int">
+            <xs:enumeration value="0" />
+            <xs:enumeration value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_valign">
+        <xs:annotation>
+            <xs:documentation>can be one of: top, bottom, center, center2</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="top" />
+            <xs:enumeration value="bottom" />
+            <xs:enumeration value="center" />
+            <xs:enumeration value="center2" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_halign">
+        <xs:annotation>
+            <xs:documentation>can be one of: left, right, center</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="left" />
+            <xs:enumeration value="right" />
+            <xs:enumeration value="center" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_keepRatio">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Clip" />
+            <xs:enumeration value="Fit" />
+            <xs:enumeration value="Inactive" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type_fileEntry">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="skin" />
+            <xs:enumeration value="challenge" />
+            <xs:enumeration value="map" />
+            <xs:enumeration value="replay" />
+            <xs:enumeration value="image" />
+            <xs:enumeration value="audio" />
+            <xs:enumeration value="video" />
+            <xs:enumeration value="text" />
+            <xs:enumeration value="zip" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="quad_blend">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="default" />
+            <xs:enumeration value="add" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="entry_textformat">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Basic" />
+            <xs:enumeration value="Password" />
+            <xs:enumeration value="Newpassword" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="textedit_format">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Basic" />
+            <xs:enumeration value="Script" />
+            <xs:enumeration value="Password" />
+            <xs:enumeration value="Newpassword" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:attributeGroup name="basicAttrib">
+        <xs:attribute name="id" type="xs:NCName" use="optional" />
+        <xs:attribute name="pos" type="manialink:type_float2" />
+        <xs:attribute name="z-index" type="xs:float" use="optional" />
+        <xs:attribute name="class" type="xs:string" use="optional" />
+        <xs:attribute name="rot" type="manialink:type_real" use="optional" />
+        <xs:attribute name="hidden" type="manialink:type_bool" use="optional" />
+        <xs:attribute name="scale" type="manialink:type_floatPositive" use="optional" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="sizeAttrib">
+        <xs:attribute name="valign" type="manialink:type_valign" use="optional" />
+        <xs:attribute name="halign" type="manialink:type_halign" use="optional" />
+        <xs:attribute name="size" type="manialink:type_float2positive" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="actionAttrib">
+        <xs:attribute name="url" type="xs:anyURI" />
+        <xs:attribute name="manialink" type="xs:anyURI" />
+        <xs:attribute name="action" type="xs:string" use="optional" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="scriptAttrib">
+        <xs:attribute name="scriptevents" type="manialink:type_bool" />
+        <xs:attribute name="scriptaction" type="xs:string" use="optional" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="styleAttrib">
+        <xs:attribute name="style" type="xs:string" use="optional" />
+        <xs:attribute name="textfont" type="xs:string" use="optional" />
+        <xs:attribute name="textsize" type="manialink:type_floatPositive" use="optional" />
+        <xs:attribute name="textcolor" type="manialink:type_color" use="optional" />
+        <xs:attribute name="focusareacolor1" type="manialink:type_color" use="optional" />
+        <xs:attribute name="focusareacolor2" type="manialink:type_color" use="optional" />
+    </xs:attributeGroup>
+
+    <!-- elements -->
+
+    <xs:element name="timeout">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer" />
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="frameinstance">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attribute name="modelid" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="point">
+        <xs:complexType>
+            <xs:attribute name="coords" type="manialink:type_float2positive" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="curve">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="manialink:point" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attribute name="color" type="manialink:type_color" />
+            <xs:attribute name="width" type="manialink:type_floatPositive" />
+            <xs:attribute name="style" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="graph">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="manialink:curve" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+
+            <xs:attribute name="min" type="manialink:type_float2positive" />
+            <xs:attribute name="max" type="manialink:type_float2positive" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="colorpicker">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+            <xs:attribute name="color" type="manialink:type_color" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="timeline">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+            <xs:attribute name="defaulttimeshown" type="manialink:type_floatPositive" use="optional" />
+            <xs:attribute name="trackcount" type="xs:positiveInteger" />
+            <xs:attribute name="separatorcolor" type="manialink:type_color" use="optional" />
+            <xs:attribute name="cursorcolor" type="manialink:type_color" use="optional" />
+            <xs:attribute name="rulerlinecolor" type="manialink:type_color" use="optional" />
+            <xs:attribute name="rulercolor" type="manialink:type_color" use="optional" />
+            <xs:attribute name="keycolor" type="manialink:type_color" use="optional" />
+            <xs:attribute name="bgcolor" type="manialink:type_color" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="video">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+            <xs:attribute name="data" type="xs:anyURI" />
+            <xs:attribute name="play" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="music" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="volume" type="manialink:type_floatPositive" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="audio">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+            <xs:attribute name="data" type="xs:anyURI" />
+            <xs:attribute name="volume" type="manialink:type_floatPositive" use="optional" />
+            <xs:attribute name="play" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="music" type="manialink:type_bool" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="label">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:styleAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+            <xs:attributeGroup ref="manialink:actionAttrib" />
+
+            <xs:attribute name="text" type="xs:string" />
+            <xs:attribute name="textid" type="xs:string" use="optional" />
+            <xs:attribute name="textprefix" type="xs:string" use="optional" />
+            <xs:attribute name="autonewline" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="appendellipsis" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="opacity" type="manialink:type_floatPositive" use="optional" />
+            <xs:attribute name="textemboss" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="italicslope" type="manialink:type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Text must be italic for this to work, accepts values between 0. and 1.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
+            <xs:attribute name="linespacing" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="translate" type="manialink:type_bool" use="optional" />
+
+            <xs:anyAttribute processContents="lax" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="gauge">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+
+            <xs:attribute name="style" type="xs:string" use="optional" />
+            <xs:attribute name="clan" type="xs:int" use="optional" />
+            <xs:attribute name="centered" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="drawbg" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="drawblockbg" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="color" type="manialink:type_color" use="optional" />
+            <xs:attribute name="ratio" type="manialink:type_floatPositive" use="optional" />
+            <xs:attribute name="grading" type="manialink:type_floatPositive" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="fileentry">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:styleAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+            <xs:attribute name="default" type="xs:string" use="optional" />
+            <xs:attribute name="name" type="xs:string" use="optional" />
+            <xs:attribute name="folder" type="xs:string" use="optional" />
+            <xs:attribute name="selecttext" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="type" type="manialink:type_fileEntry" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="minimap">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="camera">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="slider">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+            <xs:attribute name="value" type="manialink:type_floatPositive" use="optional" />
+            <xs:attribute name="minrange" type="manialink:type_floatPositive" use="optional" />
+            <xs:attribute name="maxrange" type="manialink:type_floatPositive" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="quad">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:actionAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+            <xs:attribute name="image" type="xs:anyURI" use="optional" />
+            <xs:attribute name="imagefocus" type="xs:anyURI" use="optional" />
+            <xs:attribute name="alphamask" type="xs:anyURI" use="optional" />
+            <xs:attribute name="bgcolor" type="manialink:type_color" use="optional" />
+            <xs:attribute name="bgcolorfocus" type="manialink:type_color" use="optional" />
+            <xs:attribute name="keepratio" type="manialink:type_keepRatio" use="optional" />
+            <xs:attribute name="colorize" type="manialink:type_color" use="optional" />
+            <xs:attribute name="modulatecolor" type="manialink:type_color" use="optional" />
+            <xs:attribute name="style" type="xs:string" use="optional" />
+            <xs:attribute name="substyle" type="xs:string" use="optional" />
+            <xs:attribute name="styleselected" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="autoscalefixedwidth" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="opacity" type="manialink:type_floatPositive" use="optional" />
+            <xs:attribute name="bluramount" type="manialink:type_floatPositive" use="optional" />
+            <xs:attribute name="blend" type="manialink:quad_blend" use="optional" />
+            <xs:anyAttribute processContents="lax" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="entry">
+        <xs:complexType>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attributeGroup ref="manialink:sizeAttrib" />
+            <xs:attributeGroup ref="manialink:styleAttrib" />
+            <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+            <xs:attribute name="name" type="xs:NCName" use="optional" />
+            <xs:attribute name="textformat" type="manialink:entry_textformat" use="optional" />
+            <xs:attribute name="selecttext" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="default" type="xs:string" use="optional" />
+            <xs:attribute name="valuetype" type="manialink:type_cmlentry_value" use="optional" />
+            <xs:attribute name="textemboss" type="manialink:type_bool" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="textedit" nillable="true">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attributeGroup ref="manialink:basicAttrib" />
+                    <xs:attributeGroup ref="manialink:sizeAttrib" />
+                    <xs:attributeGroup ref="manialink:styleAttrib" />
+                    <xs:attributeGroup ref="manialink:scriptAttrib" />
+
+                    <xs:attribute name="default" type="xs:string" use="optional" />
+                    <xs:attribute name="showlinenumbers" type="manialink:type_bool" use="optional" />
+                    <xs:attribute name="autonewline" type="manialink:type_bool" use="optional" />
+                    <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
+                    <xs:attribute name="textformat" type="manialink:textedit_format" use="optional" />
+                    <xs:attribute name="linespacing" type="manialink:type_floatPositive" use="optional" />
+                    <xs:attribute name="textemboss" type="manialink:type_bool" use="optional" />
+                    <xs:attribute name="selecttext" type="manialink:type_bool" use="optional" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="frame">
+        <xs:annotation>
+            <xs:documentation>Frame, can hold and reposition any elements</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="manialink:frame" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:frameinstance" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:graph" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:video" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:audio" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:label" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:gauge" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:fileentry" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:quad" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:entry" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:textedit" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:colorpicker" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:timeline" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:slider" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attributeGroup ref="manialink:basicAttrib" />
+            <xs:attribute name="size" type="manialink:type_float2positive" use="optional" />
+            <xs:attribute name="clip" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="clipposn" type="manialink:type_float2positive" use="optional" />
+            <xs:attribute name="clipsizen" type="manialink:type_float2positive" use="optional" />
+            <xs:attribute name="scroll" type="manialink:type_bool" use="optional" />
+            <xs:attribute name="scrollmax" type="manialink:type_float2positive" use="optional" />
+            <xs:anyAttribute processContents="lax" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="manialink">
+        <xs:annotation>
+            <xs:documentation>Manialink</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="manialink:timeout" minOccurs="0" maxOccurs="1" />
+                <xs:element name="stylesheet" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="style" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attributeGroup ref="manialink:basicAttrib" />
+                                    <xs:attributeGroup ref="manialink:sizeAttrib" />
+                                    <xs:attributeGroup ref="manialink:styleAttrib" />
+                                    <xs:attributeGroup ref="manialink:scriptAttrib" />
+                                    <xs:attributeGroup ref="manialink:actionAttrib" />
+                                    <xs:anyAttribute processContents="lax" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dico" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="language" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                        <xs:any processContents="skip" />
+                                    </xs:choice>
+                                    <xs:attribute name="id" type="manialink:type_dico_languages" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="framemodel" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                            <xs:element ref="manialink:frameinstance" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:graph" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:video" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:audio" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:label" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:gauge" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:fileentry" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:quad" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:entry" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:textedit" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:frame" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:colorpicker" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:timeline" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="manialink:slider" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:choice>
+                        <xs:attributeGroup ref="manialink:basicAttrib" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="manialink:frameinstance" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:graph" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:video" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:audio" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:label" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:gauge" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="camera" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:quad" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:entry" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:fileentry" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:textedit" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:frame" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:colorpicker" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:timeline" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="manialink:slider" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="script" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attribute name="version" type="xs:int" default="3">
+                <xs:annotation>
+                    <xs:documentation>Version to use, current one is 3</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="id" type="xs:string" use="optional" />
+            <xs:attribute name="name" type="xs:string" use="optional" />
+            <xs:attribute name="background" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
