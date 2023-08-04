@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <xs:simpleType name="type_cmlentry_value">
         <xs:annotation>
@@ -49,7 +50,8 @@
 
     <xs:simpleType name="type_color">
         <xs:annotation>
-            <xs:documentation>Color, supports formats: RGB RGBA RRGGBB and RRGGBBAA in hex. An alpha value of 00 is totally transparent; FF is totally opaque.</xs:documentation>
+            <xs:documentation>Color, supports formats: RGB RGBA RRGGBB and RRGGBBAA in hex. An alpha
+                value of 00 is totally transparent; FF is totally opaque.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:token">
             <xs:pattern value="[\dA-Fa-f]{6}([\dA-Fa-f][\dA-Fa-f])?||[\dA-Fa-f]{3}([\dA-Fa-f])?" />
@@ -79,13 +81,15 @@
             <xs:documentation>ingame value of Vec2, 2 numbers separated with space "32.0 -18.0"</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:pattern value="[-]?([0-9]+([.][0-9]*)?|[.][0-9]+) [-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"></xs:pattern>
+            <xs:pattern
+                value="[-]?([0-9]+([.][0-9]*)?|[.][0-9]+) [-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"></xs:pattern>
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="type_float2positive">
         <xs:annotation>
-            <xs:documentation>ingame value of Vec2, 2 positive numbers separated with space "32. 18."</xs:documentation>
+            <xs:documentation>ingame value of Vec2, 2 positive numbers separated with space "32.
+                18."</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:pattern value="([0-9]+([.][0-9]*)?|[.][0-9]+) ([0-9]+([.][0-9]*)?|[.][0-9]+)"></xs:pattern>
@@ -320,9 +324,10 @@
             <xs:attribute name="appendellipsis" type="type_bool" use="optional" />
             <xs:attribute name="opacity" type="type_floatPositive" use="optional" />
             <xs:attribute name="textemboss" type="type_bool" use="optional" />
-            <xs:attribute name="italicslope" type="type_floatPositive" use="optional" >
+            <xs:attribute name="italicslope" type="type_floatPositive" use="optional">
                 <xs:annotation>
-                    <xs:documentation>Text must be italic for this to work, accepts values between 0. and 1.</xs:documentation>
+                    <xs:documentation>Text must be italic for this to work, accepts values between
+                        0. and 1.</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
             <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
@@ -430,6 +435,11 @@
             <xs:attribute name="default" type="xs:string" use="optional" />
             <xs:attribute name="valuetype" type="type_cmlentry_value" use="optional" />
             <xs:attribute name="textemboss" type="type_bool" use="optional" />
+            <xs:attribute name="maxlen" type="xs:positiveInteger" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Defaults to 255</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -518,7 +528,8 @@
                                     <xs:choice minOccurs="0" maxOccurs="unbounded">
                                         <xs:any processContents="skip" />
                                     </xs:choice>
-                                    <xs:attribute name="id" type="type_dico_languages" use="required" />
+                                    <xs:attribute name="id" type="type_dico_languages"
+                                        use="required" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
