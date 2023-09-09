@@ -491,7 +491,7 @@
             <xs:attributeGroup ref="manialink:basicAttrib" />
             <xs:attribute name="size" type="manialink:type_float2positive" use="optional" />
             <xs:attribute name="clip" type="manialink:type_bool" use="optional" />
-            <xs:attribute name="clipposn" type="manialink:type_float2positive" use="optional" />
+            <xs:attribute name="clipposn" type="manialink:type_float2" use="optional" />
             <xs:attribute name="clipsizen" type="manialink:type_float2positive" use="optional" />
             <xs:attribute name="scroll" type="manialink:type_bool" use="optional" />
             <xs:attribute name="scrollmax" type="manialink:type_float2positive" use="optional" />
