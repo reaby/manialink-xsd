@@ -489,7 +489,7 @@
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attribute name="size" type="type_float2positive" use="optional" />
             <xs:attribute name="clip" type="type_bool" use="optional" />
-            <xs:attribute name="clipposn" type="type_float2positive" use="optional" />
+            <xs:attribute name="clipposn" type="type_float2" use="optional" />
             <xs:attribute name="clipsizen" type="type_float2positive" use="optional" />
             <xs:attribute name="scroll" type="type_bool" use="optional" />
             <xs:attribute name="scrollmax" type="type_float2positive" use="optional" />
