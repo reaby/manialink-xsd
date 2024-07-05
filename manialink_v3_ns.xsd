@@ -411,7 +411,7 @@
             <xs:attribute name="bgcolorfocus" type="manialink:type_color" use="optional" />
             <xs:attribute name="keepratio" type="manialink:type_keepRatio" use="optional" />
             <xs:attribute name="colorize" type="manialink:type_color" use="optional" />
-            <xs:attribute name="modulatecolor" type="manialink:type_color" use="optional" />
+            <xs:attribute name="modulatecolor" type="manialink:type_color" use="optional" />            
             <xs:attribute name="style" type="xs:string" use="optional" />
             <xs:attribute name="substyle" type="xs:string" use="optional" />
             <xs:attribute name="styleselected" type="manialink:type_bool" use="optional" />
@@ -419,6 +419,7 @@
             <xs:attribute name="opacity" type="manialink:type_floatPositive" use="optional" />
             <xs:attribute name="bluramount" type="manialink:type_floatPositive" use="optional" />
             <xs:attribute name="blend" type="manialink:quad_blend" use="optional" />
+            <xs:attribute name="pincorners" type="xs:string" use="optional" />
             <xs:anyAttribute processContents="lax" />
         </xs:complexType>
     </xs:element>
