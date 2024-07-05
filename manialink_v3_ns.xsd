@@ -459,8 +459,7 @@
                     <xs:attribute name="autonewline" type="manialink:type_bool" use="optional" />
                     <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
                     <xs:attribute name="textformat" type="manialink:textedit_format" use="optional" />
-                    <xs:attribute name="linespacing" type="manialink:type_floatPositive"
-                        use="optional" />
+                    <xs:attribute name="linespacing" type="manialink:type_floatPositive" use="optional" />
                     <xs:attribute name="textemboss" type="manialink:type_bool" use="optional" />
                     <xs:attribute name="selecttext" type="manialink:type_bool" use="optional" />
                 </xs:extension>
