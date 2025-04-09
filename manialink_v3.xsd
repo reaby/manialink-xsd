@@ -2,6 +2,23 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+    <xs:simpleType name="type_label_textfont">
+        <xs:annotation>
+            <xs:documentation>TextFonts available to used with CMlLabel.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RajdhaniMono" />
+            <xs:enumeration value="Oswald" />
+            <xs:enumeration value="OswaldMono" />
+            <xs:enumeration value="GameFontBlack" />
+            <xs:enumeration value="GameFontRegular" />
+            <xs:enumeration value="GameFontSemiBold" />
+            <xs:enumeration value="RobotoCondensed" />
+            <xs:enumeration value="RobotoCondensedBold" />
+            <xs:enumeration value="Nadeo/Trackmania/BebasNeueRegular" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="type_cmlentry_value">
         <xs:annotation>
             <xs:documentation>Value type used with CMlEntry.</xs:documentation>
@@ -130,6 +147,9 @@
     </xs:simpleType>
 
     <xs:simpleType name="type_keepRatio">
+        <xs:annotation>
+            <xs:documentation>Set to Clip, Fit or Inactive to keep the ratio of the image</xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="Clip"></xs:enumeration>
             <xs:enumeration value="Fit"></xs:enumeration>
@@ -138,6 +158,9 @@
     </xs:simpleType>
 
     <xs:simpleType name="type_fileEntry">
+        <xs:annotation>
+            <xs:documentation>Type of the file entry, used to filter the files shown</xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="skin"></xs:enumeration>
             <xs:enumeration value="challenge"></xs:enumeration>
@@ -152,6 +175,9 @@
     </xs:simpleType>
 
     <xs:simpleType name="quad_blend">
+        <xs:annotation>
+            <xs:documentation>Blend mode of the quad, can be one of: default, add</xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="default"></xs:enumeration>
             <xs:enumeration value="add"></xs:enumeration>
@@ -159,6 +185,9 @@
     </xs:simpleType>
 
     <xs:simpleType name="entry_textformat">
+        <xs:annotation>
+            <xs:documentation>Text format of the entry, can be one of: Basic, Password, Newpassword</xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="Basic"></xs:enumeration>
             <xs:enumeration value="Password"></xs:enumeration>
@@ -167,6 +196,9 @@
     </xs:simpleType>
 
     <xs:simpleType name="textedit_format">
+        <xs:annotation>
+            <xs:documentation>Text format of the textedit, can be one of: Basic, Script, Password, Newpassword</xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="Basic"></xs:enumeration>
             <xs:enumeration value="Script"></xs:enumeration>
@@ -176,59 +208,161 @@
     </xs:simpleType>
 
     <xs:attributeGroup name="basicAttrib">
-        <xs:attribute name="id" type="xs:NCName" use="optional" />
-        <xs:attribute name="pos" type="type_float2" />
-        <xs:attribute name="z-index" type="xs:float" use="optional" />
-        <xs:attribute name="class" type="xs:string" use="optional" />
-        <xs:attribute name="rot" type="type_real" use="optional" />
-        <xs:attribute name="hidden" type="type_bool" use="optional" />
-        <xs:attribute name="scale" type="type_floatPositive" use="optional" />
+        <xs:attribute name="id" type="xs:NCName" use="optional">
+            <xs:annotation>
+                <xs:documentation> Id of the element, used to identify it in the script </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="pos" type="type_float2">
+            <xs:annotation>
+                <xs:documentation>Position of the element, 2 numbers separated with space "32.0
+                    -18.0"</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="z-index" type="xs:float" use="optional">
+            <xs:annotation>
+                <xs:documentation>z-index of the element, 0 is the lowest</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="class" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Class name</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="rot" type="type_real" use="optional">
+            <xs:annotation>
+                <xs:documentation>Rotation of the element, in degrees</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hidden" type="type_bool" use="optional">
+            <xs:annotation>
+                <xs:documentation>Set to 1 to hide the element</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scale" type="type_floatPositive" use="optional">
+            <xs:annotation>
+                <xs:documentation>Scale of the element, 1.0 is 100%</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="sizeAttrib">
-        <xs:attribute name="valign" type="type_valign" use="optional" />
-        <xs:attribute name="halign" type="type_halign" use="optional" />
-        <xs:attribute name="size" type="type_float2positive" />
+        <xs:attribute name="valign" type="type_valign" use="optional">
+            <xs:annotation>
+                <xs:documentation>Vertical alignment, can be one of: top, bottom, center, center2</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="halign" type="type_halign" use="optional">
+            <xs:annotation>
+                <xs:documentation>Horizontal alignment, can be one of: left, right, center</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="size" type="type_float2positive">
+            <xs:annotation>
+                <xs:documentation>Size of the element, 2 positive numbers separated with space "32.0
+                    18.0"</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="actionAttrib">
-        <xs:attribute name="url" type="xs:anyURI" />
-        <xs:attribute name="manialink" type="xs:anyURI" />
-        <xs:attribute name="action" type="xs:string" use="optional" />
+        <xs:attribute name="url" type="xs:anyURI">
+            <xs:annotation>
+                <xs:documentation>URL to open when clicked</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="manialink" type="xs:anyURI">
+            <xs:annotation>
+                <xs:documentation> Manialink Url to to open when clicked </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="action" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Manialink action to send to server when clicked</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="scriptAttrib">
-        <xs:attribute name="scriptevents" type="type_bool" />
-        <xs:attribute name="scriptaction" type="xs:string" use="optional" />
+        <xs:attribute name="scriptevents" type="type_bool">
+            <xs:annotation>
+                <xs:documentation>Send events to the script, 1 to enable, 0 to disable</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scriptaction" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Sends click as Event.CustomLayerEvent to parent app, where scheme
+                    is defined with “EventType'EventData1'EventData2'EventData3'…”</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
     </xs:attributeGroup>
 
     <xs:attributeGroup name="styleAttrib">
-        <xs:attribute name="style" type="xs:string" use="optional" />
-        <xs:attribute name="textfont" type="xs:string" use="optional" />
-        <xs:attribute name="textsize" type="type_floatPositive" use="optional" />
-        <xs:attribute name="textcolor" type="type_color" use="optional" />
-        <xs:attribute name="focusareacolor1" type="type_color" use="optional" />
-        <xs:attribute name="focusareacolor2" type="type_color" use="optional" />
+        <xs:attribute name="style" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Style name, used to apply a style to the element</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="textfont" type="type_label_textfont" use="optional">
+            <xs:annotation>
+                <xs:documentation>Font name, used to apply a font to the element</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="textsize" type="type_floatPositive" use="optional">
+            <xs:annotation>
+                <xs:documentation>Text size, used to apply a font size to the element</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="textcolor" type="type_color" use="optional">
+            <xs:annotation>
+                <xs:documentation>Text color, used to apply a font color to the element</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="focusareacolor1" type="type_color" use="optional">
+            <xs:annotation>
+                <xs:documentation>Background color of the element, when not focused</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="focusareacolor2" type="type_color" use="optional">
+            <xs:annotation>
+                <xs:documentation>Background color of the element, when focused</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:attributeGroup>
 
     <!-- elements -->
 
     <xs:element name="timeout">
         <xs:simpleType>
-            <xs:restriction base="xs:integer" />
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0" />
+                <xs:maxInclusive value="2147483647" />
+            </xs:restriction>
         </xs:simpleType>
     </xs:element>
 
     <xs:element name="frameinstance">
         <xs:complexType>
             <xs:attributeGroup ref="basicAttrib" />
-            <xs:attribute name="modelid" type="xs:NCName" />
+            <xs:attribute name="modelid" type="xs:NCName">
+                <xs:annotation>
+                    <xs:documentation>Id of the model to use</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="point">
         <xs:complexType>
-            <xs:attribute name="coords" type="type_float2positive" />
+            <xs:attribute name="coords" type="type_float2positive">
+                <xs:annotation>
+                    <xs:documentation>Coordinates of the point, 2 positive numbers separated with
+                        space "32.0 18.0"</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -237,9 +371,22 @@
             <xs:choice minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="point" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
-            <xs:attribute name="color" type="type_color" />
-            <xs:attribute name="width" type="type_floatPositive" />
-            <xs:attribute name="style" type="xs:string" use="optional" />
+            <xs:attribute name="color" type="type_color">
+                <xs:annotation>
+                    <xs:documentation>Color of the curve</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="width" type="type_floatPositive">
+                <xs:annotation>
+                    <xs:documentation>Width of the curve</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="style" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>If left empty, width is described in Ml units. If set to
+                        "thin", width is described in pixels.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -251,8 +398,18 @@
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attributeGroup ref="sizeAttrib" />
 
-            <xs:attribute name="min" type="type_float2positive" />
-            <xs:attribute name="max" type="type_float2positive" />
+            <xs:attribute name="min" type="type_float2positive">
+                <xs:annotation>
+                    <xs:documentation>Minimum value of the graph, 2 positive numbers separated with
+                        space "32.0 18.0"</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="max" type="type_float2positive">
+                <xs:annotation>
+                    <xs:documentation>Maximum value of the graph, 2 positive numbers separated with
+                        space "32.0 18.0"</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -262,7 +419,11 @@
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
 
-            <xs:attribute name="color" type="type_color" use="optional" />
+            <xs:attribute name="color" type="type_color" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Color of the colorpicker, use 000 for none.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -289,10 +450,26 @@
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
 
-            <xs:attribute name="data" type="xs:anyURI" />
-            <xs:attribute name="play" type="type_bool" use="optional" />
-            <xs:attribute name="music" type="type_bool" use="optional" />
-            <xs:attribute name="volume" type="type_floatPositive" use="optional" />
+            <xs:attribute name="data" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>URL to the file to play</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="play" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Play the video when loaded</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="music" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set 1 to move sound source to music</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="volume" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Volume of the video, 0.0 is silent, 1.0 is 100%</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -301,11 +478,26 @@
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
-
-            <xs:attribute name="data" type="xs:anyURI" />
-            <xs:attribute name="volume" type="type_floatPositive" use="optional" />
-            <xs:attribute name="play" type="type_bool" use="optional" />
-            <xs:attribute name="music" type="type_bool" use="optional" />
+            <xs:attribute name="data" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>URL to the file to play</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="play" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Play the video when loaded</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="music" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set 1 to move sound source to music</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="volume" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Volume of the video, 0.0 is silent, 1.0 is 100%</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -317,22 +509,65 @@
             <xs:attributeGroup ref="scriptAttrib" />
             <xs:attributeGroup ref="actionAttrib" />
 
-            <xs:attribute name="text" type="xs:string" />
-            <xs:attribute name="textid" type="xs:string" use="optional" />
-            <xs:attribute name="textprefix" type="xs:string" use="optional" />
-            <xs:attribute name="autonewline" type="type_bool" use="optional" />
-            <xs:attribute name="appendellipsis" type="type_bool" use="optional" />
-            <xs:attribute name="opacity" type="type_floatPositive" use="optional" />
-            <xs:attribute name="textemboss" type="type_bool" use="optional" />
-            <xs:attribute name="italicslope" type="type_floatPositive" use="optional">
+            <xs:attribute name="text" type="xs:string">
                 <xs:annotation>
-                    <xs:documentation>Text must be italic for this to work, accepts values between
-                        0. and 1.</xs:documentation>
+                    <xs:documentation>Text to display</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
-            <xs:attribute name="linespacing" type="type_bool" use="optional" />
-            <xs:attribute name="translate" type="type_bool" use="optional" />
+            <xs:attribute name="textid" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Sets multilingual textid for looking up translation from
+                        Dico-element, note this is used as XML-tag in Dico.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="textprefix" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Prefix of the text to display</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="autonewline" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to enable auto new line</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="appendellipsis" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to append ellipsis if text is too long</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="opacity" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Opacity of the text, 0.0 is transparent, 1.0 is opaque</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="textemboss" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to enable emboss effect</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="italicslope" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Text must be set to italic ($i) for this to work, accepts
+                        values between 0.0 and 1.0</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="maxline" type="xs:positiveInteger" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Maximum number of lines to display, 0 for unlimited</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="linespacing" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to enable line spacing</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="translate" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to enable translation</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
 
             <xs:anyAttribute processContents="lax" />
         </xs:complexType>
@@ -343,14 +578,48 @@
             <xs:attributeGroup ref="basicAttrib" />
             <xs:attributeGroup ref="sizeAttrib" />
 
-            <xs:attribute name="style" type="xs:string" use="optional" />
-            <xs:attribute name="clan" type="xs:int" use="optional" />
-            <xs:attribute name="centered" type="type_bool" use="optional" />
-            <xs:attribute name="drawbg" type="type_bool" use="optional" />
-            <xs:attribute name="drawblockbg" type="type_bool" use="optional" />
-            <xs:attribute name="color" type="type_color" use="optional" />
-            <xs:attribute name="ratio" type="type_floatPositive" use="optional" />
-            <xs:attribute name="grading" type="type_floatPositive" use="optional" />
+            <xs:attribute name="style" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Style name, used to apply a style to the element</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="clan" type="xs:int" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Clan id, used to apply a clan style to the element</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="centered" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to center the gauge</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="drawbg" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to draw the background</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="drawblockbg" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to draw the block background</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="color" type="type_color" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Color of the gauge</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ratio" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Ratio of the gauge, 0.0 is empty, 1.0 is full</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="grading" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Grading of the gauge, use 0.0 for no grading</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -361,11 +630,31 @@
             <xs:attributeGroup ref="styleAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
 
-            <xs:attribute name="default" type="xs:string" use="optional" />
-            <xs:attribute name="name" type="xs:string" use="optional" />
-            <xs:attribute name="folder" type="xs:string" use="optional" />
-            <xs:attribute name="selecttext" type="type_bool" use="optional" />
-            <xs:attribute name="type" type="type_fileEntry" use="optional" />
+            <xs:attribute name="default" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Default value of the file entry</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="name" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Name of the file entry sent to server</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="folder" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Folder of the file entry</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="selecttext" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to select the text when clicked</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="type" type="type_fileEntry" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Type of the file entry, used to filter the files shown</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -390,9 +679,21 @@
             <xs:attributeGroup ref="sizeAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
 
-            <xs:attribute name="value" type="type_floatPositive" use="optional" />
-            <xs:attribute name="minrange" type="type_floatPositive" use="optional" />
-            <xs:attribute name="maxrange" type="type_floatPositive" use="optional" />
+            <xs:attribute name="value" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Value of the slider</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="minrange" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Minimum value of the slider, 0.0 is minimum</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="maxrange" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Maximum value of the slider</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -403,22 +704,89 @@
             <xs:attributeGroup ref="actionAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
 
-            <xs:attribute name="image" type="xs:anyURI" use="optional" />
-            <xs:attribute name="imagefocus" type="xs:anyURI" use="optional" />
-            <xs:attribute name="alphamask" type="xs:anyURI" use="optional" />
-            <xs:attribute name="bgcolor" type="type_color" use="optional" />			
-            <xs:attribute name="bgcolorfocus" type="type_color" use="optional" />
-            <xs:attribute name="keepratio" type="type_keepRatio" use="optional" />
-            <xs:attribute name="colorize" type="type_color" use="optional" />
-            <xs:attribute name="modulatecolor" type="type_color" use="optional" />
-            <xs:attribute name="style" type="xs:string" use="optional" />
-            <xs:attribute name="substyle" type="xs:string" use="optional" />
-            <xs:attribute name="styleselected" type="type_bool" use="optional" />
-            <xs:attribute name="autoscalefixedwidth" type="type_bool" use="optional" />
-            <xs:attribute name="opacity" type="type_floatPositive" use="optional" />
-            <xs:attribute name="bluramount" type="type_floatPositive" use="optional" />
-            <xs:attribute name="blend" type="quad_blend" use="optional" />
-            <xs:attribute name="pincorners" type="xs:string" use="optional" />
+            <xs:attribute name="image" type="xs:anyURI" use="optional">
+                <xs:annotation>
+                    <xs:documentation>URI to the image to display</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="imagefocus" type="xs:anyURI" use="optional">
+                <xs:annotation>
+                    <xs:documentation>URI to the image to display when focused</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="alphamask" type="xs:anyURI" use="optional">
+                <xs:annotation>
+                    <xs:documentation>URI to the image to use as alpha mask</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="bgcolor" type="type_color" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Background color of the element, when not focused</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="bgcolorfocus" type="type_color" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Background color of the element, when focused</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="keepratio" type="type_keepRatio" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to Clip, Fit or Inactive to keep the ratio of the image</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="colorize" type="type_color" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Color to use to colorize the image</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="modulatecolor" type="type_color" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Color to use to modulate the image</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="style" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Style name, used to apply a style to the element</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="substyle" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Substyle name, used to apply a substyle to the element</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="styleselected" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to use focused state of the style</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="autoscalefixedwidth" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to use fixed width for autoscale</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="opacity" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Opacity of the quad, 0.0 is transparent, 1.0 is opaque</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="bluramount" type="type_floatPositive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Blur amount of the quad, 0.0 is no blur. Notice: works only
+                        when spectating.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="blend" type="quad_blend" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Blend mode of the quad, can be one of: default, add</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="pincorners" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Pin the corners of the quad, use as 4 x Vec3:
+                        "&lt;-0.75,1.&gt;:&lt;1.,1.&gt;:&lt;0.75,-1.&gt;:&lt;-1.,-1.&gt;"</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
             <xs:anyAttribute processContents="lax" />
         </xs:complexType>
     </xs:element>
@@ -430,15 +798,39 @@
             <xs:attributeGroup ref="styleAttrib" />
             <xs:attributeGroup ref="scriptAttrib" />
 
-            <xs:attribute name="name" type="xs:NCName" use="optional" />
-            <xs:attribute name="textformat" type="entry_textformat" use="optional" />
-            <xs:attribute name="selecttext" type="type_bool" use="optional" />
-            <xs:attribute name="default" type="xs:string" use="optional" />
-            <xs:attribute name="valuetype" type="type_cmlentry_value" use="optional" />
-            <xs:attribute name="textemboss" type="type_bool" use="optional" />
+            <xs:attribute name="name" type="xs:NCName" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Name of the entry, used to identify for server</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="textformat" type="entry_textformat" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Text format, can be one of: Basic, Password, Newpassword</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="selecttext" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to select the text when focused</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="default" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Default value of the entry</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="valuetype" type="type_cmlentry_value" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Type of the value</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="textemboss" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to enable emboss effect</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
             <xs:attribute name="maxlen" type="xs:positiveInteger" use="optional">
                 <xs:annotation>
-                    <xs:documentation>Defaults to 255</xs:documentation>
+                    <xs:documentation>Defaults to 255, can be more</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
         </xs:complexType>
@@ -453,14 +845,47 @@
                     <xs:attributeGroup ref="styleAttrib" />
                     <xs:attributeGroup ref="scriptAttrib" />
 
-                    <xs:attribute name="default" type="xs:string" use="optional" />
-                    <xs:attribute name="showlinenumbers" type="type_bool" use="optional" />
-                    <xs:attribute name="autonewline" type="type_bool" use="optional" />
-                    <xs:attribute name="maxline" type="xs:positiveInteger" use="optional" />
-                    <xs:attribute name="textformat" type="textedit_format" use="optional" />
-                    <xs:attribute name="linespacing" type="type_floatPositive" use="optional" />
-                    <xs:attribute name="textemboss" type="type_bool" use="optional" />
-                    <xs:attribute name="selecttext" type="type_bool" use="optional" />
+                    <xs:attribute name="default" type="xs:string" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Default value of the textedit</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="showlinenumbers" type="type_bool" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Set to 1 to show line numbers</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="autonewline" type="type_bool" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Set to 1 to enable auto new line</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="maxline" type="xs:positiveInteger" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Maximum number of lines to display, 0 for unlimited</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="textformat" type="textedit_format" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Text format, can be one of: Basic, Password,
+                                Newpassword</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="linespacing" type="type_floatPositive" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Line spacing, 0.0 is no spacing</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="textemboss" type="type_bool" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Set to 1 to enable emboss effect</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="selecttext" type="type_bool" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Set to 1 to select the text when focused</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -488,12 +913,40 @@
                 <xs:element ref="slider" minOccurs="0" maxOccurs="unbounded" />
             </xs:choice>
             <xs:attributeGroup ref="basicAttrib" />
-            <xs:attribute name="size" type="type_float2positive" use="optional" />
-            <xs:attribute name="clip" type="type_bool" use="optional" />
-            <xs:attribute name="clipposn" type="type_float2" use="optional" />
-            <xs:attribute name="clipsizen" type="type_float2positive" use="optional" />
-            <xs:attribute name="scroll" type="type_bool" use="optional" />
-            <xs:attribute name="scrollmax" type="type_float2positive" use="optional" />
+            <xs:attribute name="size" type="type_float2positive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Size of the frame, 2 positive numbers separated with space
+                        "32.0 18.0"</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="clip" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to enable clipping</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="clipposn" type="type_float2" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Position of the clipping area, 2 numbers separated with space
+                        "32.0 18.0"</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="clipsizen" type="type_float2positive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Size of the clipping area, 2 positive numbers separated with
+                        space "32.0 18.0"</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="scroll" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 1 to enable scrolling</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="scrollmax" type="type_float2positive" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Maximum scroll value, 2 positive numbers separated with space
+                        "32.0 18.0"</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
             <xs:anyAttribute processContents="lax" />
         </xs:complexType>
     </xs:element>
@@ -530,7 +983,11 @@
                                         <xs:any processContents="skip" />
                                     </xs:choice>
                                     <xs:attribute name="id" type="type_dico_languages"
-                                        use="required" />
+                                        use="required">
+                                        <xs:annotation>
+                                            <xs:documentation>Language id</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -579,9 +1036,21 @@
                     <xs:documentation>Version to use, current one is 3</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="id" type="xs:string" use="optional" />
-            <xs:attribute name="name" type="xs:string" use="optional" />
-            <xs:attribute name="background" type="xs:string" use="optional" />
+            <xs:attribute name="id" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Id of the manialink</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="name" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Name of the manialink</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="background" type="type_bool" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Set to 0 to disable background</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
